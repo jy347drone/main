@@ -11,11 +11,17 @@ import LoginPage from "views/LoginPage/LoginPage.js";
 import Home from "views/Home/Home.js";
 var hist = createBrowserHistory();
 
-const getPath = route => process.env.PUBLIC_URL + '/' + route;
+const getPath = route => {
+  console.log('process env: ', process.env.PUBLIC_URL);
+  return process.env.PUBLIC_URL + '/' + route;
+};
 
 ReactDOM.render( /*#__PURE__*/React.createElement(Router, {
   history: hist
 }, /*#__PURE__*/React.createElement(Switch, null, /*#__PURE__*/React.createElement(Route, {
+  path: getPath(""),
+  component: Home
+}), /*#__PURE__*/React.createElement(Route, {
   path: getPath("landing-page"),
   component: LandingPage
 }), /*#__PURE__*/React.createElement(Route, {
@@ -25,9 +31,6 @@ ReactDOM.render( /*#__PURE__*/React.createElement(Router, {
   path: getPath("login-page"),
   component: LoginPage
 }), /*#__PURE__*/React.createElement(Route, {
-  path: getPath("home"),
-  component: Home
-}), /*#__PURE__*/React.createElement(Route, {
-  path: getPath(""),
+  path: getPath("components"),
   component: Components
 }))), document.getElementById("root"));
